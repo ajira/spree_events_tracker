@@ -1,11 +1,11 @@
-Spree::CheckoutController.class_eval do
+module Spree
+  module CheckoutControllerDecorator
+    include Spree::CheckoutEventTracker
+    def self.prepended(base) 
+      base.after_action :track_order_state_change, only: :edit
+      base.after_action :track_order_completion, only: :update, if: :confirm?
+    end
 
-  include Spree::CheckoutEventTracker
-
-  after_action :track_order_state_change, only: :edit
-  after_action :track_order_completion, only: :update, if: :confirm?
-
-  private
     def confirm?
       previous_state == 'confirm'
     end
@@ -19,4 +19,8 @@ Spree::CheckoutController.class_eval do
         track_activity(activity: :change_order_state, previous_state: previous_state, next_state: next_state)
       end
     end
+
+  end
 end
+
+Spree::CheckoutController.prepended Spree::CheckoutControllerDecorator

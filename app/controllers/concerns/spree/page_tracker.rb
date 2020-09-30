@@ -3,8 +3,8 @@ module Spree
     extend ActiveSupport::Concern
 
     class_methods do
-      def track_actions(actions = [])
-        after_action :track_event, only: actions
+      def track_actions(actions = [], base = self)
+        base.after_action :track_event, only: actions
       end
     end
 
