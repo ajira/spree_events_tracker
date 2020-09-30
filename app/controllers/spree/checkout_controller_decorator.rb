@@ -23,4 +23,4 @@ module Spree
   end
 end
 
-Spree::CheckoutController.prepended Spree::CheckoutControllerDecorator
+Spree::CheckoutController.prepend Spree::CheckoutControllerDecorator

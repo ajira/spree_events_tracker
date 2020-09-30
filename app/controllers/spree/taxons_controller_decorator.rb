@@ -7,4 +7,4 @@ module Spree
 	end
 end
 
-Spree::TaxonsController.prepended Spree::TaxonsControllerDecorator
+Spree::TaxonsController.prepend Spree::TaxonsControllerDecorator

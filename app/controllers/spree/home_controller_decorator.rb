@@ -7,4 +7,4 @@ module Spree
 	end
 end
 
-Spree::HomeController.prepended Spree::HomeControllerDecorator
+Spree::HomeController.prepend Spree::HomeControllerDecorator
